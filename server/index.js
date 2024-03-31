@@ -1,13 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose, {model,Schema} from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json())
 
 const connectDB = async () =>{
-    await mongoose.connect("mongodb+srv://srushtigarad24:srushtigarad24@cluster1.0n6wbyy.mongodb.net/notes")
+    await mongoose.connect(process.env.MONGODB_URL)
     console.log("Database Connected")
 }
 connectDB();

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import {
-    createBrowserRouter,Router,RouterProvider
+    createBrowserRouter,RouterProvider
 } from 'react-router-dom';
 
 import NewNote from './views/NewNote/NewNote';

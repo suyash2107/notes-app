@@ -1,0 +1,44 @@
+.form-new-note{
+    background-color: white;
+    width: 600px;
+    margin:50px auto;
+    padding : 20px;
+    border-radius: 5px;
+}
+.input-title{
+    width: 100%;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.input-category{
+    width:100%;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.input-content{
+    width:100%;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.button-save{
+    background-color: black;
+    display: block;
+    margin: 20px auto;
+    color: white;
+    font-size: 20px;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+@media screen  and (max-width:600px){
+    .form-new-note{
+        width:90%;
+    }
+}

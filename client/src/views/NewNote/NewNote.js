@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import './NewNote.css'
+import React, { useState } from 'react';
+import './NewNote.css';
 import axios from 'axios';
-import toast, {Toaster} from 'react-hot-toast'
+import { FiPlus } from 'react-icons/fi'; // Import icon from react-icons library
+import toast from 'react-hot-toast';
 
 function NewNote() {
   const [title, setTitle] = useState('');
@@ -20,31 +21,30 @@ function NewNote() {
       console.error('Error adding note:', error);
       alert('An error occurred while adding the note. Please try again later.');
     }
-    setTitle('')
-    setContent('')
-    setCategory('')
-    
+    setTitle('');
+    setContent('');
+    setCategory('');
   };
 
   return (
-    <div>
-      <h1 className='app-header'>NewNote</h1>
+    <div className="new-note-container">
+      <h1 className='app-header'>New Note</h1>
 
       <form className='form-new-note'>
         <input
           type='text'
           placeholder='Title'
           value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={(e) => setTitle(e.target.value)}
           className='input-title'
         />
 
-        <select value={category} onChange={(e) => {
-          setCategory(e.target.value);
-        }} className='input-category'>
-          <option value='select category'>Select Category</option>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className='input-category'
+        >
+          <option value=''>Select Category</option>
           <option value='general'>General</option>
           <option value='work'>Work</option>
           <option value='personal'>Personal</option>
@@ -52,21 +52,19 @@ function NewNote() {
           <option value='other'>Other</option>
         </select>
 
-        <input
-          type='text'
+        <textarea
           placeholder='Content'
           value={content}
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
+          onChange={(e) => setContent(e.target.value)}
           className='input-content'
         />
 
-        <button type='button' onClick={addNote} className='button-save'>Save</button>
-
+        <button type='button' onClick={addNote} className='button-save'>
+          <FiPlus className="icon" /> Save
+        </button>
       </form>
     </div>
-  )
+  );
 }
 
 export default NewNote;

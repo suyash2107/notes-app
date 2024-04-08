@@ -1,34 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Home.css';
-import NoteCard from './../../components/NoteCard/NoteCard'
+import NoteCard from './../../components/NoteCard/NoteCard';
 
 function Home() {
     const [notes, setNotes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const loadNotes = async()=>{
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/notes`);
-        console.log(response.data.data);
-        setNotes(response.data.data);
-    }
-    useEffect(()=>{
-        loadNotes();
-    },[])
-
-  return (
-    <div>
-      <h1 className='app-header'>All Notes</h1>
-
-        {
-            notes.map((note )=>{
-                const {_id,title,content,category,loadNotes}=note;
-                return(<NoteCard  key={_id} _id={_id} title={title} content={content} category={category} loadNotes={loadNotes}/>)
-            })
+    const loadNotes = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/notes`);
+            setNotes(response.data.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error loading notes:', error);
+            setLoading(false);
         }
+    };
 
+    useEffect(() => {
+        loadNotes();
+    }, []);
 
-    </div>
-  )
+    return (
+        <div className="home-container">
+            <h1 className='app-header'>All Notes</h1>
+            {loading ? (
+                <div className="loading">Loading...</div>
+            ) : (
+                <div className="notes-container">
+                    {notes.map((note) => (
+                        <NoteCard key={note._id} {...note} />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }
 
-export default Home
+export default Home;
